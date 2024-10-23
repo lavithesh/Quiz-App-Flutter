@@ -43,6 +43,6 @@ const List<Map<String, dynamic>> sample_data = [
     "id": 5,
     "question": "face ______",
     "options": ['tube', 'book', 'app', 'chat'],
-    "answer_index": 2,
+    "answer_index": 1,
   },
 ];
