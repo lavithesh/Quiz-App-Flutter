@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:quiz_app/controllers/question_controller.dart';
+import 'package:quiz_app_flutter/controllers/question_controller.dart';
 
 import 'components/body.dart';
 
@@ -15,7 +15,10 @@ class QuizScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         actions: [
-          FlatButton(onPressed: _controller.nextQuestion, child: Text("Skip")),
+          ElevatedButton(
+            onPressed: _controller.nextQuestion,
+            child: Text("Skip"),
+          ),
         ],
       ),
       body: Body(),

@@ -1,12 +1,19 @@
 class Question {
-  final int id, answer;
+  final int id;
+  final int answer;
   final String question;
   final List<String> options;
 
-  Question({this.id, this.question, this.answer, this.options});
+  // Use required keyword to enforce non-nullable values
+  Question({
+    required this.id,
+    required this.question,
+    required this.answer,
+    required this.options,
+  });
 }
 
-const List sample_data = [
+const List<Map<String, dynamic>> sample_data = [
   {
     "id": 1,
     "question":
@@ -16,7 +23,7 @@ const List sample_data = [
   },
   {
     "id": 2,
-    "question": "When google release Flutter.",
+    "question": "When did Google release Flutter?",
     "options": ['Jun 2017', 'Jun 2017', 'May 2017', 'May 2018'],
     "answer_index": 2,
   },
@@ -30,6 +37,12 @@ const List sample_data = [
     "id": 4,
     "question": "What command do you use to output data to the screen?",
     "options": ['Cin', 'Count>>', 'Cout', 'Output>>'],
+    "answer_index": 2,
+  },
+  {
+    "id": 5,
+    "question": "face ______",
+    "options": ['tube', 'book', 'app', 'chat'],
     "answer_index": 2,
   },
 ];

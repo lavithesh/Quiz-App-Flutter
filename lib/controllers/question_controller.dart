@@ -1,24 +1,22 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:get/state_manager.dart';
-import 'package:quiz_app/models/Questions.dart';
-import 'package:quiz_app/screens/score/score_screen.dart';
+import 'package:quiz_app_flutter/models/Questions.dart';
+import 'package:quiz_app_flutter/screens/score/score_screen.dart';
 
 // We use get package for our state management
-
 class QuestionController extends GetxController
     with SingleGetTickerProviderMixin {
-  // Lets animated our progress bar
+  // Animation variables
+  late AnimationController _animationController;
+  late Animation<double> _animation;
 
-  AnimationController _animationController;
-  Animation _animation;
   // so that we can access our animation outside
-  Animation get animation => this._animation;
+  Animation<double> get animation => this._animation;
 
-  PageController _pageController;
+  late PageController _pageController;
   PageController get pageController => this._pageController;
 
-  List<Question> _questions = sample_data
+  final List<Question> _questions = sample_data
       .map(
         (question) => Question(
             id: question['id'],
@@ -32,11 +30,11 @@ class QuestionController extends GetxController
   bool _isAnswered = false;
   bool get isAnswered => this._isAnswered;
 
-  int _correctAns;
-  int get correctAns => this._correctAns;
+  int? _correctAns;
+  int? get correctAns => this._correctAns;
 
-  int _selectedAns;
-  int get selectedAns => this._selectedAns;
+  int? _selectedAns;
+  int? get selectedAns => this._selectedAns;
 
   // for more about obs please check documentation
   RxInt _questionNumber = 1.obs;
@@ -65,16 +63,16 @@ class QuestionController extends GetxController
     super.onInit();
   }
 
-  // // called just before the Controller is deleted from memory
+  // called just before the Controller is deleted from memory
   @override
   void onClose() {
-    super.onClose();
     _animationController.dispose();
     _pageController.dispose();
+    super.onClose();
   }
 
   void checkAns(Question question, int selectedIndex) {
-    // because once user press any option then it will run
+    // because once user presses any option then it will run
     _isAnswered = true;
     _correctAns = question.answer;
     _selectedAns = selectedIndex;
@@ -85,7 +83,7 @@ class QuestionController extends GetxController
     _animationController.stop();
     update();
 
-    // Once user select an ans after 3s it will go to the next qn
+    // Once user selects an answer, after 3s it will go to the next question
     Future.delayed(Duration(seconds: 3), () {
       nextQuestion();
     });
@@ -101,11 +99,11 @@ class QuestionController extends GetxController
       _animationController.reset();
 
       // Then start it again
-      // Once timer is finish go to the next qn
+      // Once timer is finished, go to the next question
       _animationController.forward().whenComplete(nextQuestion);
     } else {
-      // Get package provide us simple way to naviigate another page
-      Get.to(ScoreScreen());
+      // Get package provides a simple way to navigate to another page
+      Get.to(() => ScoreScreen());
     }
   }
 

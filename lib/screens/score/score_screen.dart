@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:quiz_app/constants.dart';
-import 'package:quiz_app/controllers/question_controller.dart';
+import 'package:quiz_app_flutter/constants.dart';
+import 'package:quiz_app_flutter/controllers/question_controller.dart';
 import 'package:flutter_svg/svg.dart';
 
 class ScoreScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    QuestionController _qnController = Get.put(QuestionController());
+    // Retrieve the existing instance of QuestionController
+    QuestionController _qnController = Get.find<QuestionController>();
+
     return Scaffold(
       body: Stack(
         fit: StackFit.expand,
@@ -15,23 +17,23 @@ class ScoreScreen extends StatelessWidget {
           SvgPicture.asset("assets/icons/bg.svg", fit: BoxFit.fill),
           Column(
             children: [
-              Spacer(flex: 3),
+              const Spacer(flex: 3),
               Text(
                 "Score",
                 style: Theme.of(context)
                     .textTheme
-                    .headline3
+                    .displaySmall!
                     .copyWith(color: kSecondaryColor),
               ),
-              Spacer(),
+              const Spacer(),
               Text(
-                "${_qnController.correctAns * 10}/${_qnController.questions.length * 10}",
+                "${_qnController.numOfCorrectAns * 10}/${_qnController.questions.length * 10}",
                 style: Theme.of(context)
                     .textTheme
-                    .headline4
+                    .headlineMedium!
                     .copyWith(color: kSecondaryColor),
               ),
-              Spacer(flex: 3),
+              const Spacer(flex: 3),
             ],
           )
         ],

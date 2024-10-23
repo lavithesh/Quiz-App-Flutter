@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:quiz_app/constants.dart';
-import 'package:quiz_app/screens/quiz/quiz_screen.dart';
+import 'package:quiz_app_flutter/constants.dart';
+import 'package:quiz_app_flutter/screens/quiz/quiz_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class WelcomeScreen extends StatelessWidget {
   @override
@@ -20,8 +21,11 @@ class WelcomeScreen extends StatelessWidget {
                   Spacer(flex: 2), //2/6
                   Text(
                     "Let's Play Quiz,",
-                    style: Theme.of(context).textTheme.headline4.copyWith(
-                        color: Colors.white, fontWeight: FontWeight.bold),
+                    style: GoogleFonts.roboto(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
                   ),
                   Text("Enter your informations below"),
                   Spacer(), // 1/6
@@ -47,11 +51,8 @@ class WelcomeScreen extends StatelessWidget {
                         borderRadius: BorderRadius.all(Radius.circular(12)),
                       ),
                       child: Text(
-                        "Lets Start Quiz",
-                        style: Theme.of(context)
-                            .textTheme
-                            .button
-                            .copyWith(color: Colors.black),
+                        "Let's Start Quiz",
+                        style: TextStyle(color: Colors.black),
                       ),
                     ),
                   ),

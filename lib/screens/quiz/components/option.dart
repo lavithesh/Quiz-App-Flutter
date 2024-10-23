@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:quiz_app/controllers/question_controller.dart';
+import 'package:quiz_app_flutter/controllers/question_controller.dart';
 
 import '../../../constants.dart';
 
 class Option extends StatelessWidget {
   const Option({
-    Key key,
-    this.text,
-    this.index,
-    this.press,
+    Key? key,
+    required this.text,
+    required this.index,
+    required this.press,
   }) : super(key: key);
+
   final String text;
   final int index;
   final VoidCallback press;
@@ -39,8 +40,8 @@ class Option extends StatelessWidget {
           return InkWell(
             onTap: press,
             child: Container(
-              margin: EdgeInsets.only(top: kDefaultPadding),
-              padding: EdgeInsets.all(kDefaultPadding),
+              margin: const EdgeInsets.only(top: kDefaultPadding),
+              padding: const EdgeInsets.all(kDefaultPadding),
               decoration: BoxDecoration(
                 border: Border.all(color: getTheRightColor()),
                 borderRadius: BorderRadius.circular(15),
